@@ -45,7 +45,7 @@
                 <xpath expr="//field[@name='display_name']" position="before">
                     <field name="member_id"/>
                 </xpath>
-                 <xpath expr="//field[@name='display_name']" position="after">
+                <xpath expr="//field[@name='display_name']" position="after">
                     <field name="function"/>
                     <field name="grade"/>
                     <field name="hiring_date"/>
@@ -58,6 +58,29 @@
                 <!--<xpath expr="//button[@name='action_view_partner_invoices']" position="attributes">-->
                 <!--<attribute name="attrs">{'invisible': [('insurer_type','=',True)]}</attribute>>-->
                 <!--</xpath>-->
+
+            </field>
+        </record>
+        <record id="res_partner_view_remove" model="ir.ui.view">
+            <field name="name">res.partner.view.buttons</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="priority" eval="20"/>
+            <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='%(sale.act_res_partner_2_sale_order)d']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='%(crm.crm_lead_opportunities)d']" position="attributes">
+                    <attribute name="invisible">1</attribute>>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+          
 
             </field>
         </record>

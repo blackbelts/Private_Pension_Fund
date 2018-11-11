@@ -108,9 +108,10 @@ class Partners(models.Model):
         invest1=[]
         for data in inv:
               allocation = self.env['cash.pool'].search([('subscription_id', 'in', data.ids)])
-              investment = self.env['account.invoice'].search([('allocation_id', 'in', allocation.ids)])
-              # invest1.append(investment)
-              return investment
+              for cash in allocation:
+               investment = self.env['account.invoice'].search([('allocation_id', '=', cash.id)])
+               invest1.append(investment)
+              return invest1
 
 
 
